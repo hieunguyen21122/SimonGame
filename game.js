@@ -2,6 +2,7 @@ var buttonColours = ["red", "blue", "green", "yellow"];
 var userClickedPattern = [];
 var gamePattern = [];
 var level = 0;
+var started = false;
 
 function nextSequence() {
     level++;
@@ -16,10 +17,15 @@ function nextSequence() {
     }
 }
 
-$(document).keypress(function() {
-    var randomChosenColour = nextSequence();
-    $("#" + randomChosenColour).fadeOut(100).fadeIn(100);
-    playSound(randomChosenColour);
+$("#level-title").click(function() {
+    if (!started) {
+        started = true;
+        var randomChosenColour = nextSequence();
+        $("#" + randomChosenColour).fadeOut(100).fadeIn(100);
+        playSound(randomChosenColour);
+    } else {
+        $("#level-title").text("Game đang chạy, không được nhấn vào đây đâu, chơi tiếp đê :)))");
+    }
 });
 
 $(".btn").click(function() {
@@ -47,7 +53,7 @@ $(".btn").click(function() {
         setTimeout(function() {
             $("body").removeClass("game-over");
         }, 1000);
-        $("#level-title").text("Game Over, nhấn phím bất kỳ để chơi lại");
+        $("#level-title").text("Game Over, nhấn vào đây để chơi lại");
         startOver();
     }
 });
@@ -73,6 +79,7 @@ function startOver() {
     level = 0;
     gamePattern = [];
     userClickedPattern = [];
+    started = false;
 }
 
 function getLove() {
@@ -80,6 +87,6 @@ function getLove() {
     $("#level-title").css("color", "rgb(235, 53, 53)");
     startOver();
     setTimeout(function() {
-            $("#level-title").text("Nhấn phím bất kỳ để chịch tiếp <3<3<3 :)))");
+            $("#level-title").text("Nhấn vào đây để chịttt tiếp <3<3<3 :)))");
     }, 5000);    
 }
