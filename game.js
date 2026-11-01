@@ -5,7 +5,7 @@ var level = 0;
 
 function nextSequence() {
     level++;
-    if (level === 3) {
+    if (level === 6) {
         $("#level-title").text("Tối mai cho chịch <3 !!!");
         return "ok";
     }else {
